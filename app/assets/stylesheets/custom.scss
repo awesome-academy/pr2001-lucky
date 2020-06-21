@@ -2,4 +2,16 @@
 body{
 	margin: 0px;
 	padding: 0px;
+	/*background: lightblue url("background.jpg") no-repeat fixed center;*/
+}
+.container-fluid{
+    width: 100%;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+/*Content footer*/
+li{
+	list-style-type: none;
 }
