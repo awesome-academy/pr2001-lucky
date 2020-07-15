@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20_200_629_120_717) do
     t.string 'sex'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.boolean 'admin', default: true
+    t.boolean 'admin', default: false
   end
 
   add_foreign_key 'images', 'products'
