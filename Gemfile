@@ -26,11 +26,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
 # # gem 'annotate'
 gem 'bootstrap4-kaminari-views' # giao diện đẹp cho phân trang
-gem 'byebug'
+gem 'carrierwave'
 gem 'kaminari'
+gem 'pry'
 gem 'ransack' # tạo form tìm kiếm
 gem 'rubocop'
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -1,5 +1,5 @@
 <div class="container">
-    <%= form_for :product, url: admin_products_path do |f| %>
+    <%= form_for @product, url: admin_products_path do |f| %>
         <%= render 'shared/error_messages', object: @product %>
         <div class="field">
             <%= f.text_field :name_product , placeholder:"Enter name product" %>
@@ -11,11 +11,19 @@
             <%= f.text_field :price , placeholder:"Enter price product"%>
         </div>
         <div class="field">
-            <%= f.select :type, product_types%>
+            <%= f.select :kind_of, product_types%>
         </div>
         <div class="caregory">
             <%= f.select :category_id, Category.all.collect {|u| [u.name_category, u.id]}, :prompt => 'Select' %>
         </div>
+
+        <h5>Add images for product</h5>
+
+        <% 2.times do |i|%>
+            <%= f.fields_for :images, @product.images.new do |ff|%>
+                <%= ff.file_field :url%>
+            <% end %>
+        <% end %>
         
         <%= f.submit "Create product", class: "btn btn-primary" %>
     <% end %>

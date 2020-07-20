@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.text :information
       t.integer :rating
       t.integer :price
-      t.string :type
+      t.string :kind_of
       t.integer :category_id, foreign_key: true
       t.timestamps
     end

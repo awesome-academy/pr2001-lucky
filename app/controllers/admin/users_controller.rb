@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::UsersController < Admin::BaseController
+  before_action :get_value_user, only: %i[edit update]
   def index
     @users = User.all
   end
@@ -20,12 +21,9 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def edit
-    @user = User.find(params[:id])
-   end
+  def edit; end
 
   def update
-    @user = User.find(params[:id])
     if user.update(user_params)
       flash[:success] = 'update successfuly'
       redirect_to admin_users_path
@@ -38,5 +36,9 @@ class Admin::UsersController < Admin::BaseController
 
   def user_params
     params.require(:user).permit :user_name, :email, :password, :password_confirmation, :birth, :sex
+  end
+
+  def get_value_user
+    @user = User.find(params[:id])
   end
 end

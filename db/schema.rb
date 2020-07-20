@@ -14,11 +14,11 @@
 
 ActiveRecord::Schema.define(version: 20_200_629_120_717) do
   create_table 'carts', force: :cascade do |t|
-    t.integer 'users_id'
+    t.integer 'user_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.integer 'total_amount'
-    t.index ['users_id'], name: 'index_carts_on_users_id'
+    t.index ['user_id'], name: 'index_carts_on_user_id'
   end
 
   create_table 'categories', force: :cascade do |t|
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20_200_629_120_717) do
     t.string 'address'
     t.integer 'user_id', null: false
     t.integer 'cart_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
     t.index ['cart_id'], name: 'index_orders_on_cart_id'
     t.index ['user_id'], name: 'index_orders_on_user_id'
   end
@@ -58,7 +60,7 @@ ActiveRecord::Schema.define(version: 20_200_629_120_717) do
     t.string 'name_product'
     t.text 'information'
     t.integer 'price'
-    t.string 'type'
+    t.string 'kind_of'
     t.integer 'category_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false

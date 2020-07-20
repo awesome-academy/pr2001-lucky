@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
-class Admin::SessionsController < Admin::BaseController
+class Admin::SessionsController < ApplicationController
+  layout 'admin/application'
+
+  include Admin::SessionsHelper
+
   def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user &.authenticate(params[:session][:password])
-      log_in(user)
+      log_in_admin(user)
       redirect_to admin_categories_path
     else
       flash[:danger] = 'Invalid email/password combination'
@@ -15,7 +19,7 @@ class Admin::SessionsController < Admin::BaseController
   end
 
   def destroy
-    log_out if logged_in?
-    redirect_to root_path
+    log_out_admin if logged_in_admin?
+    redirect_to admin_path
   end
 end

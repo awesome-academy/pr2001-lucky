@@ -1,0 +1,12 @@
+<div class="col-md-3 col-sm-3 col-6">
+  <div class="product<%=product.id%>">
+    <%= link_to product_path(product) do%>
+      <%= image_tag product.images.first.url_url, class: "list-product" if product.images.first %>
+    <% end %>  
+  </div>
+  <div class="buying">
+    <span><%= product.name_product %></span>
+    <h6>$<%= product.price %></h6>
+    <%= button_to "Buy now" , "#", class:"btn btn-outline-danger"%>
+  </div>
+</div>
