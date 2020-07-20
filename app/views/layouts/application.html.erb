@@ -11,9 +11,8 @@
   </head>
 
   <body>
-    <% if  logged_in? %>
-      <%= render 'layouts/header_admin' %>
-    <% end %>
+    <%= render 'layouts/header_users' %>
     <%= yield %>
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
   </body>
 </html>
