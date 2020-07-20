@@ -7,8 +7,8 @@ class Admin::ProductsController < Admin::BaseController
   def index
     @products = Product.all.page(params[:page]).per(5)
   end
-  def show
-  end
+
+  def show; end
 
   def new
     @product = Product.new
@@ -44,8 +44,8 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def product_params
-    params.require(:product).permit :name_product, :information, 
-      :price, :kind_of, :category_id, images_attributes: [:url, :id] # P    roduct::ATTRIBUTES
+    params.require(:product).permit :name_product, :information,
+                                    :price, :kind_of, :category_id, images_attributes: %i[url id] # P    roduct::ATTRIBUTES
   end
 
   def get_product

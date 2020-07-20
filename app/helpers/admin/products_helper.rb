@@ -3,8 +3,8 @@
 module Admin::ProductsHelper
   def product_types
     [
-      ['Drink', 'Drink'],
-      ['Food', 'Food']
+      %w[Drink Drink],
+      %w[Food Food]
     ]
   end
 end

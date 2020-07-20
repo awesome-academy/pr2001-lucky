@@ -7,7 +7,7 @@ class Admin::ImagesController < Admin::BaseController
   end
 
   def index
-    @images = @product.images.all 
+    @images = @product.images.all
   end
 
   def create
