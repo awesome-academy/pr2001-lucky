@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>CATEGORIES</h2>
+    <%=link_to "Create new caregory", new_admin_product_path, class: "btn btn-origin"%>
+  <%= form_tag admin_search_products_path, method: :get , class: "form-inline" do %>
+    <div>
+      <%= text_field_tag :name_product, params[:name_product], class:'form-control mr-sm-2',placeholder: 'Looking for product' %>
+      <%= submit_tag "Search", class: 'btn btn-origin' %>
+    </div>
+  <% end %>
+    <table id="products">
+      <tr>
+        <th>Name</th>
+        <th>Information</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Category</th>
+        <th>Action</th>
+      </tr>
+      <% @products.each do |product| %>
+        <%= render 'product' , product: product  %>
+      <% end %>
+    </table>
+</div>

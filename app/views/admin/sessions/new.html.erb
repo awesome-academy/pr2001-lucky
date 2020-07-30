@@ -27,8 +27,17 @@
         <div class="checkbox pull-right">
           <label>
             <input type="checkbox">
-            Remember me </label>
+            Remember me 
+          </label>
         </div>
+        <div class="signup">
+          <a href="#" onclick="Notification()">Do you have Acount?</a>
+        </div>
+        <script type="text/javascript">
+          function Notification(){
+            alert("To create Acount, You need to have agreement from Admin. Thanks!")
+          }
+        </script>
         <%= f.submit "Log in", class: "btn btn-primary" %>
       <% end %>
     </div>

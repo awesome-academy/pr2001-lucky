@@ -1,14 +1,30 @@
 <div class="container-fluid">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <%= image_tag("backround.jpg", :alt => "rss feed", class:'responsive') %>
-            <div class="content">
-                <h2>Get up to 30% Off</h2>
-                <h2>New Arrival</h2>
-                <%= button_to  "#" ,class: "btn btn-light" do %>
-                    Shopping Cart <i class="fa fa-shopping-cart"></i>
-                <% end %>
-            </div>
-        </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%= image_tag("backround.jpg", :alt => "rss feed", class:'responsive') %>
+      <div class="content">
+        <h2>Get up to 30% Off</h2>
+        <h2>New Arrival</h2>
+        <%= button_to  "#" ,class: "btn btn-light" do %>
+          Shopping Cart <i class="fa fa-shopping-cart"></i>
+        <% end %>
+      </div>
     </div>
+</div>
+</div>
+<div class="container">
+  <h3>Foods</h3>
+  <div class="row">
+    <% @foods.each do |food| %>
+      <%= render "product", product: food %>
+    <% end %>
+  </div>
+  <hr/>
+  <br/>
+  <h3>Drinks</h3>
+  <div class="row">
+    <% @drinks.each do |drink| %>
+      <%= render "product", product: drink %>
+    <% end %>
+  </div>
 </div>

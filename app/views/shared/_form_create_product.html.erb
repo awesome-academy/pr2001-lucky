@@ -1,20 +1,21 @@
-<div class="container">
+<div class="container bench">
     <%= form_for @product, url: admin_products_path do |f| %>
         <%= render 'shared/error_messages', object: @product %>
-        <div class="field">
-            <%= f.text_field :name_product , placeholder:"Enter name product" %>
+        <div class="form-group">
+
+            <%= f.text_field :name_product , placeholder:"Enter name product", class:"form-control" %>
         </div>
-        <div class="text">
-            <%= f.text_area :information ,  placeholder:"Enter desciption"%>
+        <div class="form-group">
+            <%= f.text_area :information ,  placeholder:"Enter desciption", class:"form-control"%>
         </div>
-        <div class="field">
-            <%= f.text_field :price , placeholder:"Enter price product"%>
+        <div class="form-group">
+            <%= f.text_field :price , placeholder:"Enter price product", class:"form-control"%>
         </div>
-        <div class="field">
-            <%= f.select :kind_of, product_types%>
+        <div class="form-group">
+            <%= f.select :kind_of, product_types, {class: "form-control"}%>
         </div>
-        <div class="caregory">
-            <%= f.select :category_id, Category.all.collect {|u| [u.name_category, u.id]}, :prompt => 'Select' %>
+        <div class="form-group">
+            <%= f.select :category_id, Category.all.collect {|u| [u.name_category, u.id]}, :prompt => 'Select', class: "form-control" %>
         </div>
 
         <h5>Add images for product</h5>

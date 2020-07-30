@@ -2,6 +2,7 @@
 
 class Admin::UsersController < Admin::BaseController
   before_action :get_value_user, only: %i[edit update]
+  include Admin::SessionsHelper
   def index
     @users = User.all
   end
@@ -13,10 +14,11 @@ class Admin::UsersController < Admin::BaseController
   def create
     @user = User.new user_params
     if @user.save
-      log_in @user
+      log_in_admin(@user)
       flash[:success] = 'User created successfuly'
-      redirect_to admin_users_path
+      redirect_to admin_login_path
     else
+      flash[:danger] = 'User cound not create'
       render :new
     end
   end
@@ -26,7 +28,7 @@ class Admin::UsersController < Admin::BaseController
   def update
     if user.update(user_params)
       flash[:success] = 'update successfuly'
-      redirect_to admin_users_path
+      redirect_to admin_login_path
     else
       render :edit
     end
@@ -35,7 +37,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit :user_name, :email, :password, :password_confirmation, :birth, :sex
+    params.require(:user).permit :user_name, :email, :password, :password_confirmation,:sex ,:birth
   end
 
   def get_value_user

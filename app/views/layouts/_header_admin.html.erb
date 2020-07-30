@@ -22,7 +22,11 @@
                    <%= link_to admin_products_path do%>
                     <i class='fas fa-hotdog' style="color: #e65805cf;"></i>Product
                   <% end %>
+                  <%= link_to "Users",admin_users_path%>
                 </div>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Page",root_path, class:"nav-link"%>
               </li>
             </ul>
           </nav>
@@ -36,6 +40,7 @@
               <div class="dropdown-content">
                 <%= link_to "Profile","#"%>
                 <%= link_to "Setting","#" %>
+                <%= link_to "Add to Admin", admin_signup_path%>
                 <%= link_to "Log out",admin_logout_path, method: :delete%>
                 <% else %>
                 <%= link_to "Login",admin_login_path %>
