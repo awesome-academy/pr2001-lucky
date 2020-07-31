@@ -5,6 +5,7 @@ class Admin::CategoriesController < Admin::BaseController
   def index
     @categories = Category.all.page(params[:page]).per(5)
   end
+
   def new
     @category = Category.new
   end
@@ -33,11 +34,11 @@ class Admin::CategoriesController < Admin::BaseController
       render :edit
     end
   end
+
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html {redirect_to admin_category_url, notice: 'Product was successfully destroyed.' }
-      format.json {head :no_content}
+      format.html { redirect_to admin_category_url, notice: 'Product was successfully destroyed.' }
       format.js
     end
   end

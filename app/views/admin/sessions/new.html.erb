@@ -31,12 +31,14 @@
           </label>
         </div>
         <div class="signup">
-          <a href="#" onclick="Notification()">Do you have Acount?</a>
+          <a href="#" class="warring">Do you have Acount?</a>
         </div>
         <script type="text/javascript">
-          function Notification(){
-            alert("To create Acount, You need to have agreement from Admin. Thanks!")
-          }
+          $(document).ready(function(){
+            $(".warring").click(function(){
+              alert("To signup, You need agreement in Admin! ");
+            });
+          });
         </script>
         <%= f.submit "Log in", class: "btn btn-primary" %>
       <% end %>

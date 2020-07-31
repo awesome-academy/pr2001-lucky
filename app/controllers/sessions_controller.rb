@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   include SessionsHelper
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user &.authenticate(params[:session][:password])
-      log_in_user(user) #save user_id into session
+      log_in_user(user) # save user_id into session
       redirect_to homepages_home_path
     else
       flash[:danger] = 'Invalid email/password combination'
@@ -16,7 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out_user if logged_in_user?
-    redirect_to root_path 
+    redirect_to root_path
   end
-
 end

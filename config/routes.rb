@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   root 'homepages#home'
   namespace :admin do
     get '/', to: 'sessions#new'
-  namespace :search do
-    resources :categories, only: [:index]
-    resources :products , only: [:index]
+    namespace :search do
+      resources :categories, only: [:index]
+      resources :products, only: [:index]
     end
     resources :categories
     resources :products do
@@ -30,8 +30,8 @@ Rails.application.routes.draw do
     resources :users
     resources :sessions, only: %i[new create destroy]
   end
-  resources :users, except: [:destroy, :index] do
-    resources :ratings, only: [:create, :update]
+  resources :users, except: %i[destroy index] do
+    resources :ratings, only: %i[create update]
     resources :orders, except: %i[edit update]
   end
 

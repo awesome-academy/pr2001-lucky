@@ -6,7 +6,7 @@ class CreateRating < ActiveRecord::Migration[6.0]
       t.integer :rate
       t.references :user
       t.references :product
-      
+
       t.timestamps
     end
   end

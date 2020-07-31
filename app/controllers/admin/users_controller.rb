@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::UsersController < Admin::BaseController
-  before_action :get_value_user, only: %i[edit update]
-  include Admin::SessionsHelper
+  before_action :get_value_user, only: %i[show edit update]
   def index
     @users = User.all
   end
@@ -10,6 +9,8 @@ class Admin::UsersController < Admin::BaseController
   def new
     @user = User.new
   end
+
+  def show; end
 
   def create
     @user = User.new user_params
@@ -26,7 +27,7 @@ class Admin::UsersController < Admin::BaseController
   def edit; end
 
   def update
-    if user.update(user_params)
+    if @user.update(user_params)
       flash[:success] = 'update successfuly'
       redirect_to admin_login_path
     else
@@ -37,7 +38,7 @@ class Admin::UsersController < Admin::BaseController
   private
 
   def user_params
-    params.require(:user).permit :user_name, :email, :password, :password_confirmation,:sex ,:birth
+    params.require(:user).permit :user_name, :email, :password, :password_confirmation, :sex, :birth
   end
 
   def get_value_user

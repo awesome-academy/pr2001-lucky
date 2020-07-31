@@ -27,11 +27,11 @@ gem 'bootstrap'
 # # gem 'annotate'
 gem 'bootstrap4-kaminari-views' # giao diện đẹp cho phân trang
 gem 'carrierwave'
+gem 'jquery-rails'
 gem 'kaminari'
 gem 'pry'
 gem 'ransack' # tạo form tìm kiếm
 gem 'rubocop'
-gem 'jquery-rails'
 gem 'social-share-button'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

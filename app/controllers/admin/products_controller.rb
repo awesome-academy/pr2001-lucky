@@ -26,7 +26,6 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def edit; end
-  
 
   def update
     if @product.update(product_params)
@@ -37,15 +36,17 @@ class Admin::ProductsController < Admin::BaseController
       render :edit
     end
   end
+
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html {redirect_to admin_product_url, notice: 'Product was successfully destroyed.' }
-      format.json {head :no_content}
+      format.html { redirect_to admin_product_url, notice: 'Product was successfully destroyed.' }
       format.js
     end
   end
+
   private
+
   def product_params
     params.require(:product).permit :name_product, :information, :price, :kind_of, :category_id, images_attributes: %i[url id] # Product::ATTRIBUTES
   end
@@ -53,6 +54,7 @@ class Admin::ProductsController < Admin::BaseController
   def get_product
     @product = Product.find(params[:id])
   end
+
   def logged_in? # Returns true if the user is logged in
     !current_admin.nil?
   end
