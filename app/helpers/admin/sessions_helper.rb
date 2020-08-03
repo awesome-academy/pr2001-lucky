@@ -17,8 +17,4 @@ module Admin::SessionsHelper
     session.delete(:current_admin_id)
     @current_admin = nil
   end
-
-  def admin
-    admin_path?
-  end
 end

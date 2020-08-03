@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="row">
+    <% @drinks.each do |drink| %>
+      <%= render "product", product: drink %>
+    <% end %>
+  </div>
+</div>

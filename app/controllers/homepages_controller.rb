@@ -2,6 +2,19 @@
 
 class HomepagesController < ApplicationController
   def home
-    @products = Product(created_at: :desc).limit(14).page(params[:page]).per(12)
+    @foods = Food.limit_product
+    @drinks = Drink.limit_product
+  end
+
+  def food
+    @foods = Food.all
+  end
+
+  def drink
+    @drinks = Drink.all
+  end
+
+  def sale
+    @products = Product.order(create_at: :desc).offset(4)
   end
 end

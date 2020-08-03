@@ -7,6 +7,8 @@
   <div class="buying">
     <span><%= product.name_product %></span>
     <h6>$<%= product.price %></h6>
-    <%= button_to "Buy now" , "#", class:"btn btn-outline-danger"%>
+    <%= button_to "#", class:"btn btn-success" do%>
+      <i class='fas fa-cart-plus'></i> Add Cart
+    <% end %>
   </div>
 </div>

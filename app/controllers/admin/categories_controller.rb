@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::CategoriesController < Admin::BaseController
-  before_action :set_category, only: %i[show edit update]
+  before_action :set_category, only: %i[show edit update destroy]
   def index
     @categories = Category.all.page(params[:page]).per(5)
   end
@@ -36,9 +36,11 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def destroy
-    @category = Category.find_by id: params[:id]
     @category.destroy
-    redirect_to request.referrer || root_url
+    respond_to do |format|
+      format.html { redirect_to admin_category_url, notice: 'Product was successfully destroyed.' }
+      format.js
+    end
   end
 
   private

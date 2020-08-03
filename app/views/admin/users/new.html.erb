@@ -1,0 +1,39 @@
+<div class="container bench">
+  <h2 style="text-align: center;"> Create Admin</h2>
+    <%= form_for @user do |f| %>
+      <div class="form-group"> 
+        <%= f.label :Name%>
+        <%= f.text_field :user_name , placeholder:"Enter name product", class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :Email %>
+        <%= f.email_field :email ,  placeholder:"Enter desciption", class:"form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :Password %>
+        <%= f.password_field :password , placeholder:"Enter price product", class:"form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :Password_Confirmation %>
+        <%= f.password_field :password_confirmation , placeholder:"Enter price product", class:"form-control"%>
+      </div>
+      <div class="form-group form-check-inline">
+        <%= f.label :Made, class: "form-check-label"%>:
+        <%= f.label :Men, class: "form-check-label"%>
+        <%= f.radio_button :sex, "women", class:"form-check-input"%>
+        <%= f.label :Women, class: "form-check-label"%>
+        <%= f.radio_button :sex, "men", class:"form-check-input"%>
+        <%= f.label :Other, class: "form-check-label"%>
+        <%= f.radio_button :sex, "other", class:"form-check-input"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :Birth%>
+        <%= f.date_field :birth, class: 'form-control'%>
+      </div>
+      <div class="form-group">
+        <%= f.label :You_are_not_robot, class: "form-check-label"%>
+        <%= f.radio_button :admin, "true", class:"form-check-input"%>
+      </div>
+    <%= f.submit "Create product", class: "btn btn-primary" %>
+  <% end %>
+</div>

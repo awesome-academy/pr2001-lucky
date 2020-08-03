@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class RatingTest < ActiveSupport::TestCase
+class RatingsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
