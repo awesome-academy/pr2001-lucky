@@ -1,14 +1,18 @@
 <div class="col-md-3 col-sm-3 col-6">
-  <div class="product<%=product.id%>">
-    <%= link_to product_path(product) do%>
-      <%= image_tag product.images.first.url_url, class: "list-product" if product.images.first %>
-    <% end %>  
+  <div class="trans product<%=product.id%>">
+    <%= image_tag product.images.first.url_url, class: "list-product image" if product.images.first %>
+    <div class="overlay">
+      <div class="add">
+      <%= button_to "#", class:"btn btn-success", remote: true do %>
+        <i class='fas fa-cart-plus'></i> Add Cart
+      <% end %>
+      </div> 
+    </div> 
   </div>
   <div class="buying">
-    <span><%= product.name_product %></span>
-    <h6>$<%= product.price %></h6>
-    <%= button_to "#", class:"btn btn-success btn-bg", remote: true do %>
-      <i class='fas fa-cart-plus'></i> Add Cart
+    <%= link_to product_path(product) do%>
+      <span><%= product.name_product %></span>
     <% end %>
+    <h6>$<%= product.price %></h6>
   </div>
 </div>

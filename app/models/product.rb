@@ -15,9 +15,14 @@ class Product < ApplicationRecord
   scope :search_name, lambda { |name_product|
     where("name_product LIKE '%#{name_product}%'")
   }
+  scope :search_price, lambda { |price|
+    where("price BETWEEN '%#{price_1}%' AND '%#{price_2}%'")
+  }
 
+  # PRICE_RANGE = {0: (1..8), 1: (9..100), 2: (101: 100000)}
+  
   def self.limit_product
-    order(created_at: :desc).limit(10)
+    order(created_at: :desc).limit(4)
   end
 
   self.inheritance_column = :kind_of
@@ -26,3 +31,4 @@ class Product < ApplicationRecord
     %w[Drink Food]
   end
 end
+# Product::PRICE_RANGE["0"]

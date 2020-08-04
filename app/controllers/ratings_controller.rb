@@ -1,23 +1,26 @@
 # frozen_string_literal: true
 
 class RatingsController < ApplicationController
-  include SessionsHelper
   before_action :get_values_user, only: [:create]
   before_action :get_values_product, only: [:index]
   def index
     @ratings = @product.ratings
   end
 
-  def create
-    @product = Product.find(rating_params[:product_id])
-    @rating = Rating.new rating_params
-    @rating.user = current_user
-    respond_to do |format|
-      if @rating.save
-        format.js
-      else
-        format.js
+   def create
+    if logged_in_user?
+      @product = Product.find(rating_params[:product_id])
+      @rating = Rating.new rating_params
+      @rating.user = current_user
+      respond_to do |format|
+        if @rating.save
+          format.js
+        else
+          format.js
+        end
       end
+    else
+      redirect_to user_login_path
     end
   end
 
@@ -36,7 +39,7 @@ class RatingsController < ApplicationController
   private
 
   def get_values_product
-    @product = Product.find(params[:product_id])
+   @product = Product.find(rating_params[:product_id])
   end
 
   def get_values_user
