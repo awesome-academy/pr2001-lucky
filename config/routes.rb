@@ -46,6 +46,6 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[new create destroy]
   resources :product_carts, only: %i[create update destroy]
   resources :carts , only: :index
-  resources :orders, only: :show
+  resources :orders, only: %i[new create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

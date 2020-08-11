@@ -49,6 +49,9 @@
     </div>
     <div class="col-md-3">
       <h5>$<%= current_cart.total_amount.sum %></h5>
+      <div class="order">
+        <%= render 'order', order: @order%>
+      </div>
     </div>
   </div>
 <% end %>    
