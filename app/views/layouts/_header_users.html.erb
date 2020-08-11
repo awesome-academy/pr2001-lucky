@@ -1,29 +1,32 @@
-<nav class="navbar navbar-expand-lg">
-  <%= link_to root_path, class:"navbar-brand" do %>
-    <img src="https://img.icons8.com/color/48/000000/hamburger.png"/>
-  <% end %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+<div class="container-fluid header">
+  <nav class="navbar navbar-color navbar-expand-sm justify-content-center">
+    <a class="navbar-brand" href="#">
+      FAST FOOD<%= image_tag("logo.png", alt: "Edit Entry", class:"logo") %>
+    </a>
+  </nav>
+  <nav class="navbar navbar-color navbar-expand-sm justify-content-center">
+    <ul class="navbar-nav">
       <li class="nav-item active">
         <%= link_to root_path, class:"nav-link" do %>
-          Home<span class="sr-only">(current)</span>
+          <i class="w3-jumbo w3-spin fa fa-home"></i>Home
+          <span class="sr-only">(current)</span>
         <% end %>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="products" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Menu
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Food",  homepages_menu_food_path, class:"dropdown-item"%>
-          <%= link_to "Drink",  homepages_menu_drink_path, class:"dropdown-item"%>
-        </div>
-      </li>
+          <a class="nav-link dropdown-toggle" href="products" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Menu
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to "All menu",  products_path, class:"dropdown-item"%>
+            <%= link_to "Food",  homepages_menu_food_path, class:"dropdown-item"%>
+            <%= link_to "Drink",  homepages_menu_drink_path, class:"dropdown-item"%>
+          </div>
+        </li>
       <li class="nav-item">
         <%= link_to "Sale", homepages_sale_path, class:"nav-link"%>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
       </li>
       <li class="nav-item">
         <%= link_to "About us", "#", class:"nav-link"%>
@@ -31,24 +34,44 @@
       <li class="nav-item">
         <%= link_to "Blog", "#", class:"nav-link"%>
       </li>
+      <% if logged_in_user? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class='far fa-user'></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to user_path(current_user) , class:"dropdown-item" do%>
+              Profile
+            <% end %> 
+            <%= link_to edit_user_path(current_user), class:"dropdown-item" do%>
+             Setting
+            <% end %>
+            <div class="dropdown-divider"></div>
+            <%= link_to user_logout_path,  method: "delete", class:"dropdown-item" do%>
+              Logout <i class="fa fa-sign-out"></i> 
+            <% end %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", user_login_path, class:"nav-link"%>
+        </li>
+      <% end %>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    
-    <% if logged_in_user?  %>
-    <div class="dropdown">
-        <%= link_to "#", class:"dropbtn" do %>
-          <i class='fas fa-user' style='font-size:24px'></i>
+    <%= form_tag search_products_path, method: :get , class: "form-inline" do %>
+      <div>
+        <%= text_field_tag :name_product, params[:name_product], class:'form-control mr-sm-2',placeholder: 'Looking for product' %>
+        <%= button_tag "Search",type: 'submit', class: 'btn btn-origin' do %>
+          <i class="fa fa-search"></i>
         <% end %>
-        <div class="dropdown-content">
-          <%= link_to "Profile", user_path(current_user), class:"dropdown-item"%>
-          <%= link_to "Log out", user_logout_path, method: :delete, class:"dropdown-item"%>
-        </div>
-    </div>
-    <% else %>
-      <%=link_to "Login", new_session_path , class:"btn btn-outline-dark"%>
+      </div>
     <% end %>
-  </div>
-</nav>
+    <div class="navbar-nav">
+      <%= link_to carts_path, class:"nav-link" do %>
+        <i class='fas fa-cart-plus'></i>
+      <% end %>
+      <div class="buying">
+        <%= render "products/product_cart" %>
+      </div>
+  </nav>
+</div>

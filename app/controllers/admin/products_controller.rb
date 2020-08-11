@@ -26,35 +26,37 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def edit; end
+  
 
   def update
     if @product.update(product_params)
       flash[:success] = 'Update successfully'
-      redirect_to admin_categories_path
+      redirect_to admin_products_path
     else
       flash[:danger] = 'Product could not be updated'
       render :edit
     end
   end
-
   def destroy
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to admin_product_url, notice: 'Product was successfully destroyed.' }
+      format.html {redirect_to admin_product_url, notice: 'Product was successfully destroyed.' }
       format.js
     end
   end
-
   private
-
   def product_params
+    if params.has_key? :drink
+      params[:product] = params.delete :drink
+    elsif params.has_key? :food
+      params[:product] = params.delete :food
+    end  
     params.require(:product).permit :name_product, :information, :price, :kind_of, :category_id, images_attributes: %i[url id] # Product::ATTRIBUTES
   end
 
   def get_product
     @product = Product.find(params[:id])
   end
-
   def logged_in? # Returns true if the user is logged in
     !current_admin.nil?
   end

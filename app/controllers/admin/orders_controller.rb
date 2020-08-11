@@ -1,4 +1,3 @@
-# frozen_string_literal: true
-
+# frozen_stri
 class Admin::OrdersController < Admin::BaseController
 end

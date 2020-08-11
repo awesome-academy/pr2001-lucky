@@ -1,0 +1,5 @@
+$('.delete-product-in-cart').bind('ajax:success', function() {
+  $(this).closest('tr').fadeOut(100);
+  $('.buying').html("<%= j render 'products/product_cart'%>")
+  $('.cart-buying').html("<%= j render 'carts/cart' %>")
+})

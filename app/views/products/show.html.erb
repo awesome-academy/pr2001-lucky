@@ -22,17 +22,14 @@
 					<span class="kind"> <%= @product.kind_of %></span>
 					
 			</section>
-			<%= button_to "#", class:"btn btn-success" do %>
-				<i class='fas fa-cart-plus'></i> Add Cart
-			<% end %>  
+			<%= render "orderitem", procart_cart: @procart_cart%>
 			<div class="rating">
 				<span>
 					<%= average_rating(@product.ratings) %> 
 					<i class="material-icons" style="font-size:30px;color:yellow">star</i>
 				</span>
 			</div>
-			<%= social_share_button_tag(@product.name_product, desc: @product.name_product) %>
-			<% if logged_in_user?%>
+			<% if logged_in_user? %>
 				<div class="form-check form-check-inline">
 					<%= form_for [current_user, @rating], remote: true do |f| %>
 						<%= f.label :One, class: "form-check-label"%>

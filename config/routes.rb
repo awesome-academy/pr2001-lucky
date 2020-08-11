@@ -30,16 +30,22 @@ Rails.application.routes.draw do
     resources :users
     resources :sessions, only: %i[new create destroy]
   end
+
   resources :users, except: %i[destroy index] do
     resources :ratings, only: %i[create update]
-    resources :orders, except: %i[edit update]
   end
 
   resources :products, only: %i[index show] do
     resources :images, only: %i[index show]
     resources :ratings, only: [:index]
   end
+  namespace :search do
+    resources :products, only: [:index]
+  end
   resources :users, except: %i[index destroy]
   resources :sessions, only: %i[new create destroy]
+  resources :product_carts, only: %i[create update destroy]
+  resources :carts , only: :index
+  resources :orders, only: %i[new create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

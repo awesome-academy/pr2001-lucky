@@ -320,7 +320,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   jbuilder (~> 2.7)
-  jquery-rails
+  jquery-rails (~> 4.4)
   kaminari
   listen (~> 3.2)
   pry
