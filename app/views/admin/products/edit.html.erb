@@ -1,0 +1,31 @@
+<h3>UPDATE PRODUCT</h3>
+<div class="container bench">
+    <%= form_for @product , url:admin_product_path(@product), method: :patch do |f| %>
+         <%= render 'shared/error_messages', object: @product %>
+        <div class="form-group">
+            <%= f.text_field :name_product , placeholder:"Enter name product", class:"form-control"  %>
+        </div>
+        <div class="form-group">
+            <%= f.text_area :information ,  placeholder:"Enter desciption", class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.text_field :price , placeholder:"Enter price product", class:"form-control" %>
+        </div>
+        <div class="form-group">
+            <%= f.select :kind_of, product_types %>
+        </div>
+        <div class="form-group">
+            <%= f.select :category_id, Category.all.collect {|u| [u.name_category, u.id]}, :prompt => 'Select' %>
+        </div>
+        <h5>Update images<h5>
+
+        <% @product.images.each do |image|%>
+            <%= f.fields_for :images, image do |ff|%>
+                <%= image_tag image.url_url, class:"thumbnail" %>
+                <%= ff.hidden_field :id%>
+                <%= ff.file_field :url%>
+            <% end %>
+        <% end %>
+        <%= f.submit "Update product", class: "btn btn-primary" %>
+    <% end %>
+</div>

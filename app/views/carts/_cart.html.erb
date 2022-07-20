@@ -1,0 +1,57 @@
+<% if @cart.product_carts.blank? %>
+    <h3>You haven't product in cart </h3>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr class="table-light">
+        <th>Product name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <% @product_carts.each do |product_cart| %>
+          <tr>
+            <td>
+              <%= product_cart.product.name_product %>
+            </td>
+            <td>
+
+              <%= form_for product_cart, class:"form-group", remote:true do |f| %>
+                <div class="create-cart">
+                  <%= f.hidden_field :product_id , value:product_cart.product.id %>
+                  <%= f.number_field :quantity , min:1, class:"form-control quantity",
+                    data: {id: product_cart.id} %>
+                    <%= f.submit "Update", class:"btn ctn-success" %>
+                </div>
+              <% end %>
+
+            </td>
+            <td class="price-<%= product_cart.id %>" data-price=<%= product_cart.product.price %>>
+              $<%= product_cart.total_product %>
+            </td>
+            <td>
+              <%= link_to product_cart_path(product_cart), method: :delete , remote: true, class:"delete-product-in-cart" do %>
+                <i class='far fa-trash-alt' style='font-size:24px; color: black'></i>
+              <% end %>
+            </td>
+          </tr>  
+        <% end %>
+    </tbody>
+  </table>
+    <hr/>
+  <br/>
+  <div class="row">
+    <div class="col-md-9">
+      <b> Total the Bill: </b> 
+    </div>
+    <div class="col-md-3">
+      <h5>$<%= current_cart.total_amount.sum %></h5>
+      <div class="order">
+        <%= render 'order', order: @order%>
+      </div>
+    </div>
+  </div>
+<% end %>    

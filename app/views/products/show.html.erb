@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="row">
+		<aside class="col-md-8">
+			<section class="info-product"> 
+				<h2>
+					<%= @product.name_product%>
+				</h2>
+				<div class="image-belongto-product">
+					<span class="image<%= @product.id%>">
+						<%= image_tag @product.images.first.url_url, class: "list-product" if @product.images.first %>
+					</span>
+				</div>
+			</section>
+		</aside>
+		<aside class="col-md-4">
+			<section class="product-details">
+				<h5 class="desciption">DESCRIPTION</h5>
+					<span class="text"> <%= @product.information%></span>
+				<h5 class="price">PRICE</h5>
+					<span class="$">$<%= @product.price %></span>
+				<h5 class="type">TYPE</h5>
+					<span class="kind"> <%= @product.kind_of %></span>
+					
+			</section>
+			<%= render "orderitem", procart_cart: @procart_cart%>
+			<div class="rating">
+				<span>
+					<%= average_rating(@product.ratings) %> 
+					<i class="material-icons" style="font-size:30px;color:yellow">star</i>
+				</span>
+			</div>
+			<% if logged_in_user? %>
+				<div class="form-check form-check-inline">
+					<%= form_for [current_user, @rating], remote: true do |f| %>
+						<%= f.label :One, class: "form-check-label"%>
+						<%= f.radio_button :rate, "1", class:"form-check-input"%>
+						<%= f.label :Two, class: "form-check-label"%>
+						<%= f.radio_button :rate, "2", class:"form-check-input"%>
+						<%= f.label :Three, class: "form-check-label"%>
+						<%= f.radio_button :rate, "3", class:"form-check-input"%>
+						<%= f.label :Four, class: "form-check-label"%>
+						<%= f.radio_button :rate, "4", class:"form-check-input"%>
+						<%= f.label :Five, class: "form-check-label"%>
+						<%= f.radio_button :rate, "5", class:"form-check-input"%>
+						<%= f.submit "Rating", class: "btn btn-primary" %>
+						<%= f.hidden_field :product_id, value: @product.id %>
+					<% end %>
+				</div>
+			<% end %>
+			<div class="comment-rating">
+				<%= render "rating", rating: @rating %>
+			</div>
+		</aside>
+	</div>
+</div>

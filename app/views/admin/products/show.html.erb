@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+		<aside class="col-md-8">
+			<section class="info-product"> 
+				<h2>
+					<%= @product.name_product%>
+				</h2>
+				<div class="image-belongto-product">
+					<span class="image<%= @product.id%>">
+						<% @product.images.each do |i| %>
+							<%= image_tag i.url_url, class: "img-thumbnail" %>
+						<% end %>
+					</span>
+				</div>
+			</section>
+		</aside>
+		<aside class="col-md-4">
+			<section class="product-details">
+				<h5 class="desciption">DESCRIPTION</h5>
+					<span class="text"> <%= @product.information%></span>
+				<h5 class="price">PRICE</h5>
+					<span class="$">$<%= @product.price %></span>
+				<h5 class="type">TYPE</h5>
+					<span class="kind"> <%= @product.kind_of %></span>
+			</section>
+		</aside>
+	</div>
+</div>

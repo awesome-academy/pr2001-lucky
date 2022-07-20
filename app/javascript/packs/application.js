@@ -15,3 +15,16 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+//= require social-share-button
+
+$( document ).on('turbolinks:load', function() {
+  $('.quantity').on('change', function() {
+    var id = $(this).data('id');
+    var value = $(this).val();
+    var priceClass = 'price-' + id;
+    var price = $('.' + priceClass).data('price');
+    var totalPrice = value*price;
+
+    $('.' + priceClass).html(totalPrice);
+  })
+})

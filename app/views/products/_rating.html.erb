@@ -1,0 +1,4 @@
+<% if logged_in_user? %>
+  <h6><%= current_user.user_name %>: </h6>
+  <span><%= rating.rate.to_i %> <i class="material-icons" style="font-size:30px;color:yellow">star</i></span>
+<% end %>

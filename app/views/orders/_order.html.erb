@@ -1,0 +1,41 @@
+<div class="container">
+  <h3>ORDER</h3>
+  <%= form_for @order do |f| %>
+    <table class="table table-hover table-order">
+      <tbody>
+        <tr>
+          <td colspan="2">User name</td>
+          <td class="content-db"><%=current_user.user_name%></td>
+        </tr>
+        <tr>
+          <td colspan="2">Code order</td>
+          <td class="content-db"><%=current_cart.id%></td>
+        </tr>
+        <tr>
+          <td colspan="2">List product</td>
+          <td class="content-db">
+             <% @product_carts.each do |product_cart| %>
+                <%= product_cart.product.name_product + ',' %>
+             <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">Total bill</td>
+          <td class="content-db">$<%= current_cart.total_amount.sum %></td>
+        </tr>
+      </tbody>
+    </table>
+    <h4> User confirmation </h4>
+    <%= f.hidden_field :user_id, value:current_user.id %>
+    <%= f.hidden_field :cart_id , value:current_cart.id %>
+    <div class="form-group"> 
+      <%= f.label :Address%>
+      <%= f.text_field :address , placeholder:"Enter adress", class:"form-control" , :required => true%>
+    </div>
+    <div class="form-group"> 
+      <%= f.label :Phone_number %>
+      <%= f.text_field :phone_number , placeholder:"Enter phonenumber", class:"form-control" ,:required => true %>
+    </div>
+    <%= f.submit "Finish order", class: "btn btn-primary" %>
+  <% end %>
+</div>
